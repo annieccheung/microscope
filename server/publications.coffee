@@ -1,2 +1,2 @@
-Meteor.publish 'posts', () ->
+Meteor.publish 'posts', ->
   Posts.find()
