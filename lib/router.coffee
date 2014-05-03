@@ -10,4 +10,6 @@ Router.map ->
   @route 'postPage', path: '/posts/:_id', data: () ->
     Posts.findOne @params._id
 
+  @route 'postSubmit', path: '/submit'
+
 Router.onBeforeAction 'loading'
