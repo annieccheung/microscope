@@ -4,7 +4,6 @@ if Posts.find().count() == 0
     author: 'Sacha Greif',
     url: 'http://sachagreif.com/introducing-telescope/'
 
-
    Posts.insert
      title: 'Meteor',
      author: 'Tom Coleman',
