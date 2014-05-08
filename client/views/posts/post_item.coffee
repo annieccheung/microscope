@@ -6,4 +6,4 @@ Template.postItem.helpers
     a.hostname
 
   ownPost: () ->
-    @.userId == Meteor.userId()
+    @userId == Meteor.userId()
