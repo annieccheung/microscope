@@ -26,3 +26,4 @@ requireLogin = () ->
 
 Router.onBeforeAction 'loading'
 Router.onBeforeAction requireLogin, only: 'postSubmit'
+Router.onBeforeAction () -> clearErrors()
