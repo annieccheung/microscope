@@ -5,7 +5,7 @@ Template.notifications.helpers
   notificationCount: () ->
     Notifications.find(userId: Meteor.userId(), read:false).count()
 
-Template.notifiation.helpers
+Template.notification.helpers
   notificationPostPath: () ->
     Router.routes.postPage.path(_id: @postId)
 
