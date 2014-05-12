@@ -7,8 +7,12 @@ Router.configure
 Router.map ->
   @route 'postsList', path: '/'
 
-  @route 'postPage', path: '/posts/:_id', data: () ->
-    Posts.findOne @params._id
+  @route 'postPage',
+    path: '/posts/:_id',
+    waitOn: () ->
+      Meteor.subscribe 'comments', @params._id,
+    data: () ->
+      Posts.findOne @params._id
 
   @route 'postEdit', path: '/posts/:_id/edit', data: () ->
     Posts.findOne @params._id
