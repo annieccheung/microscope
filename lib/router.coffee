@@ -4,6 +4,20 @@ Router.configure
   waitOn: () ->
     Meteor.subscribe 'notifications'
 
+PostsListController = RouteController.extend
+  template: 'postsList'
+  increment: 5
+  limit: () ->
+    parseInt @params.postsLimit || @increment
+  findOptions: () ->
+    sort:
+      submitted: -1
+    limit: @limit()
+  waitOn: () ->
+    Meteor.subscribe 'posts', @findOptions()
+  data: () ->
+    posts: Posts.find {}, this.findOptions()
+
 Router.map ->
 
   @route 'postPage',
@@ -20,18 +34,7 @@ Router.map ->
 
   @route 'postsList',
     path: '/:postsLimit?',
-    waitOn: () ->
-      limit = parseInt @params.postsLimit || 5
-      Meteor.subscribe 'posts',
-        sort:
-          submitted: -1
-        limit: limit
-    data: () ->
-      limit = parseInt @params.postsLimit || 5
-      posts: Posts.find {},
-        sort:
-          submitted: -1
-        limit: limit
+    controller: PostsListController
 
 
 requireLogin = () ->
