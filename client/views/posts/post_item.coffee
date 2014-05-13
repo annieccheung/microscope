@@ -7,3 +7,8 @@ Template.postItem.helpers
 
   ownPost: () ->
     @userId == Meteor.userId()
+
+Template.postItem.events
+  'click .upvote': (e) ->
+    e.preventDefault()
+    Meteor.call 'upvote', @_id
