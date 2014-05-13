@@ -1,10 +1,4 @@
-Router.configure
-  layoutTemplate: "layout",
-  loadingTemplate: "loading",
-  waitOn: () ->
-    Meteor.subscribe 'notifications'
-
-PostsListController = RouteController.extend
+@PostsListController = RouteController.extend
   template: 'postsList'
   increment: 5
   limit: () ->
@@ -25,19 +19,32 @@ PostsListController = RouteController.extend
     posts: @posts()
     nextPath: if hasMore then nextPath else null
 
+Router.configure
+  layoutTemplate: "layout",
+  loadingTemplate: "loading",
+  waitOn: () ->
+    Meteor.subscribe 'notifications'
+
 Router.map ->
 
   @route 'postPage',
-    path: '/posts/:_id',
+    path: '/posts/:_id'
     waitOn: () ->
-      Meteor.subscribe 'comments', @params._id,
+      Meteor.subscribe 'singlePost', @params._id
+      Meteor.subscribe 'comments', @params._id
     data: () ->
       Posts.findOne @params._id
 
-  @route 'postEdit', path: '/posts/:_id/edit', data: () ->
-    Posts.findOne @params._id
+  @route 'postEdit',
+    path: '/posts/:_id/edit'
+    waitOn: () ->
+      Meteor.subscribe 'singlePost', @params._id
+    data: () ->
+      Posts.findOne @params._id
 
-  @route 'postSubmit', path: '/submit'
+  @route 'postSubmit',
+    path: '/submit'
+    disableProgress: true
 
   @route 'postsList',
     path: '/:postsLimit?',
