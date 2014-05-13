@@ -49,7 +49,7 @@ Meteor.methods
     if not post
       throw new Meteor.Error 422, "Post not found"
 
-    if _.include(post.upvoters, user_.id)
+    if _.include(post.upvoters, user._id)
       throw new Meteor.Error 422, "Already upvoted this post"
 
     Posts.update post._id,
