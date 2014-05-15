@@ -23,7 +23,9 @@ Template.postItem.helpers
     newPosition = post._rank * POST_HEIGHT
     attributes = {}
 
-    if not _.isUndefined post.position
+    if _.isUndefined post.position
+      attributes.class = 'post invisible'
+    else
       offset = post.position - newPosition
       attributes.style = "top: " + offset + "px"
       if offset is 0
