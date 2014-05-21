@@ -5,7 +5,8 @@
       "iron-router": {},
       "spin": {},
       "accounts-ui-bootstrap-dropdown": {},
-      "iron-router-progress": {}
+      "iron-router-progress": {},
+      "mocha-web": {}
     },
     "packages": {
       "iron-router": {
@@ -27,6 +28,11 @@
         "git": "https://github.com/Multiply/iron-router-progress.git",
         "tag": "v0.3.1",
         "commit": "3f7900feb4bb70a1289b39a1fdcd1f438c0335b3"
+      },
+      "mocha-web": {
+        "git": "https://github.com/mad-eye/meteor-mocha-web.git",
+        "tag": "v0.2.4",
+        "commit": "97194bc90ea9b32047973ff44562a3da3b4e7477"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

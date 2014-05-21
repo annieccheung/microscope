@@ -3,5 +3,4 @@ Template.postsList.helpers
     @posts.rewind()
     return @posts.map (post, index, cursor) ->
       post._rank = index
-      console.log post._rank
       return post
